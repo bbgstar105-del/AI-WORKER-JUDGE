@@ -18,6 +18,7 @@ body {
 }
 
 button,
+input,
 textarea {
   font: inherit;
 }
@@ -93,6 +94,32 @@ textarea {
 
 #project-url {
   word-break: break-all;
+}
+
+.project-state {
+  display: grid;
+  gap: 8px;
+}
+
+.state-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0;
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.state-empty {
+  color: #5a5851;
+  background: rgba(17, 17, 17, 0.08);
+}
+
+.state-synced {
+  color: #1d6d35;
+  background: rgba(53, 146, 74, 0.15);
 }
 
 .suggestion-pill {
@@ -184,9 +211,37 @@ textarea {
   outline: none;
 }
 
+input[type="url"] {
+  width: 100%;
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #121212;
+  background: #faf9f6;
+  outline: none;
+}
+
+input[type="url"]:focus {
+  border-color: rgba(17, 17, 17, 0.18);
+  box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.04);
+}
+
 textarea:focus {
   border-color: rgba(17, 17, 17, 0.18);
   box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.04);
+}
+
+.field-label {
+  margin: 0;
+  color: #4d4b45;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.panel-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .primary-button {

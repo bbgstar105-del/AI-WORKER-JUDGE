@@ -3,11 +3,20 @@ import path from "node:path";
 
 import type { ProjectRecord, ProjectSource, ProjectStatus, ProjectTagRecord } from "@/lib/types";
 
-const dataDir = path.join(process.cwd(), "data");
-const dataPath = path.join(dataDir, "projects.json");
+function projectDataPath(): string {
+  const configuredPath = process.env.PROJECTS_DATA_PATH?.trim();
+  if (configuredPath) {
+    return path.isAbsolute(configuredPath)
+      ? configuredPath
+      : path.join(/* turbopackIgnore: true */ process.cwd(), configuredPath);
+  }
+
+  return path.join(process.cwd(), "data", "projects.json");
+}
 
 async function ensureDataFile(): Promise<void> {
-  await fs.mkdir(dataDir, { recursive: true });
+  const dataPath = projectDataPath();
+  await fs.mkdir(path.dirname(dataPath), { recursive: true });
   try {
     await fs.access(dataPath);
   } catch {
@@ -16,6 +25,7 @@ async function ensureDataFile(): Promise<void> {
 }
 
 export async function listProjects(): Promise<ProjectRecord[]> {
+  const dataPath = projectDataPath();
   await ensureDataFile();
   const raw = await fs.readFile(dataPath, "utf8");
   const parsed = JSON.parse(raw) as ProjectRecord[];
@@ -23,6 +33,7 @@ export async function listProjects(): Promise<ProjectRecord[]> {
 }
 
 export async function saveProjects(projects: ProjectRecord[]): Promise<void> {
+  const dataPath = projectDataPath();
   await ensureDataFile();
   await fs.writeFile(dataPath, `${JSON.stringify(projects, null, 2)}\n`, "utf8");
 }

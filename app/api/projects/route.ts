@@ -12,8 +12,16 @@ type CreateProjectBody = {
   aiSuggestion?: AISuggestionLevel;
 };
 
-export async function GET() {
+export async function GET(request: Request) {
   const projects = await listProjects();
+  const { searchParams } = new URL(request.url);
+  const url = searchParams.get("url")?.trim();
+
+  if (url) {
+    const project = projects.find((item) => item.url === url) ?? null;
+    return NextResponse.json({ ok: true, project });
+  }
+
   return NextResponse.json({ ok: true, projects });
 }
 

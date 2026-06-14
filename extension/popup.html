@@ -20,6 +20,10 @@
         <p class="section-label">当前页面</p>
         <h2 id="project-title">正在读取...</h2>
         <p id="project-url" class="muted">请稍候</p>
+        <div class="project-state">
+          <p id="project-state-pill" class="state-pill state-empty">未同步</p>
+          <p id="project-state-detail" class="muted">正在检查当前项目是否已经存在。</p>
+        </div>
       </section>
 
       <section class="panel">
@@ -44,6 +48,19 @@
       <section class="panel">
         <label class="section-label" for="note">备注</label>
         <textarea id="note" rows="4" placeholder="写一句为什么现在打这个标签"></textarea>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <p class="section-label">连接设置</p>
+          <button id="save-api-base" class="ghost-button" type="button">保存地址</button>
+        </div>
+        <label class="field-label" for="api-base">后端地址</label>
+        <input id="api-base" type="url" placeholder="https://your-app.railway.app" />
+        <div class="panel-actions">
+          <button id="test-connection" class="ghost-button" type="button">测试连接</button>
+          <button id="open-dashboard" class="ghost-button" type="button">打开后台</button>
+        </div>
       </section>
 
       <footer class="popup-footer">
