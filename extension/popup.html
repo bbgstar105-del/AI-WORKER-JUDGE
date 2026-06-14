@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Work Judge</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header class="popup-head">
+        <div>
+          <p class="eyebrow">AI Work Judge</p>
+          <h1>项目标记</h1>
+        </div>
+        <span class="badge">v0.1.0</span>
+      </header>
+
+      <section class="panel">
+        <p class="section-label">当前页面</p>
+        <h2 id="project-title">正在读取...</h2>
+        <p id="project-url" class="muted">请稍候</p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <p class="section-label">AI 建议</p>
+          <button id="refresh-suggestion" class="ghost-button" type="button">刷新</button>
+        </div>
+        <p id="suggestion-pill" class="suggestion-pill suggestion-neutral">读取中</p>
+        <p id="suggestion-reason" class="muted">正在请求建议。</p>
+      </section>
+
+      <section class="panel">
+        <p class="section-label">人工确认</p>
+        <div id="status-buttons" class="status-grid">
+          <button type="button" data-status="消费">消费</button>
+          <button type="button" data-status="转化中">转化中</button>
+          <button type="button" data-status="生产">生产</button>
+          <button type="button" data-status="暂停">暂停</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <label class="section-label" for="note">备注</label>
+        <textarea id="note" rows="4" placeholder="写一句为什么现在打这个标签"></textarea>
+      </section>
+
+      <footer class="popup-footer">
+        <p id="save-message" class="footer-message">默认连接本地后端 `http://localhost:3000`</p>
+        <button id="save-button" class="primary-button" type="button" disabled>保存标签</button>
+      </footer>
+    </main>
+
+    <script src="./popup.js"></script>
+  </body>
+</html>

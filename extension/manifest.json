@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "AI Work Judge",
+  "version": "0.1.0",
+  "description": "给当前网页对应的项目打状态标签。",
+  "action": {
+    "default_title": "AI Work Judge",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["tabs", "storage"],
+  "host_permissions": ["http://localhost:3000/*", "https://*/*", "http://*/*"]
+}

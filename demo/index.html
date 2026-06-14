@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Work Judge</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero-section" aria-labelledby="app-title">
+        <div class="eyebrow">Artifact-first AI audit</div>
+        <h1 id="app-title">AI Work Judge</h1>
+        <p class="hero-line">Submit the work. Then judge the value.</p>
+        <p class="hero-copy">先看作品证据，再追问缺口。判断一次 AI 产出是真正生产，还是生产幻觉。</p>
+      </section>
+
+      <section class="workspace" aria-label="AI Work Judge artifact audit">
+        <section class="input-panel">
+          <div class="panel-heading">
+            <p class="section-kicker">Submit</p>
+            <h2>提交作品</h2>
+          </div>
+
+          <div class="submit-grid">
+            <article class="submit-card active">
+              <div>
+                <p class="card-kicker">Available now</p>
+                <h3>Local Folder Audit</h3>
+                <p>选择一个本机项目文件夹。当前 demo 只在浏览器本地读取文件结构，不上传任何内容。</p>
+              </div>
+              <label class="folder-picker">
+                <input id="folder-input" type="file" webkitdirectory directory multiple />
+                <span>Select project folder</span>
+              </label>
+            </article>
+
+            <article class="submit-card disabled" aria-disabled="true">
+              <div>
+                <p class="card-kicker">Coming soon</p>
+                <h3>Link Review</h3>
+                <p>提交网页、GitHub、作品集或部署链接，由后端抓取后分析。</p>
+              </div>
+              <div class="fake-control">Paste link</div>
+            </article>
+
+            <article class="submit-card disabled" aria-disabled="true">
+              <div>
+                <p class="card-kicker">Coming soon</p>
+                <h3>Zip Upload</h3>
+                <p>上传压缩包，适合黑客松作品、课程作业和离线项目归档。</p>
+              </div>
+              <div class="fake-control">Upload zip</div>
+            </article>
+          </div>
+
+          <div class="pipeline" aria-label="Analysis pipeline">
+            <div class="pipeline-step is-active" id="step-scan"><span>1</span>Scan artifact</div>
+            <div class="pipeline-step" id="step-detect"><span>2</span>Detect evidence</div>
+            <div class="pipeline-step" id="step-ask"><span>3</span>Ask missing questions</div>
+            <div class="pipeline-step" id="step-judge"><span>4</span>Judge production value</div>
+          </div>
+
+          <section class="questions-panel" id="questions-panel" hidden>
+            <div class="panel-heading compact">
+              <p class="section-kicker">Missing context</p>
+              <h2>只追问文件里看不出的事</h2>
+            </div>
+
+            <div class="checks context-checks">
+              <label><input id="delivered" type="checkbox" /> 这个作品已经给别人看过或交付过</label>
+              <label><input id="feedback" type="checkbox" /> 已经收到真实反馈</label>
+              <label><input id="efficient" type="checkbox" /> 它明确节省了时间或提高了效率</label>
+              <label><input id="judged" type="checkbox" /> 我主动修改、反驳或验收过 AI 输出</label>
+            </div>
+
+            <label class="field">
+              <span>下一步准备让它进入什么场景？</span>
+              <textarea id="next-context" rows="3" placeholder="例如：发给 3 个同学试用、部署到线上、补 README 后提交比赛。"></textarea>
+            </label>
+
+            <p class="form-error" id="form-error" role="alert"></p>
+            <div class="form-actions">
+              <button class="primary-action" type="button" id="judge-button">Judge artifact</button>
+              <button class="secondary-action" type="button" id="reset-button">Reset</button>
+            </div>
+          </section>
+        </section>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="panel-heading">
+            <p class="section-kicker">Judge report</p>
+            <h2>作品验收报告</h2>
+          </div>
+
+          <div class="score-ring" id="score-ring">
+            <span id="score-value">--</span>
+            <small>/100</small>
+          </div>
+
+          <div class="verdict-card">
+            <p class="verdict-label" id="verdict-label">等待作品</p>
+            <p class="verdict-copy" id="verdict-copy">选择一个项目文件夹后，系统会先扫描结构，再追问必要信息。</p>
+          </div>
+
+          <div class="artifact-summary" id="artifact-summary">
+            <p class="empty-state">当前没有作品证据。请选择本地项目文件夹。</p>
+          </div>
+
+          <div class="breakdown" id="breakdown"></div>
+
+          <div class="analysis-block">
+            <h3>判定理由</h3>
+            <ul id="reasons">
+              <li>系统会优先根据文件结构、入口文件、说明文档和复用资产建立初步判断。</li>
+            </ul>
+          </div>
+
+          <div class="next-action">
+            <h3>下一步行动</h3>
+            <p id="next-action">先提交作品证据，再进入审判。</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="case-strip" aria-label="演示案例">
+        <div>
+          <p class="section-kicker">Demo cases</p>
+          <h2>没有文件夹时，也可以看判断逻辑</h2>
+        </div>
+        <div class="case-actions">
+          <button type="button" data-case="thin">薄弱作品案例</button>
+          <button type="button" data-case="demo">静态 Demo 案例</button>
+          <button type="button" data-case="complete">完整项目案例</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
